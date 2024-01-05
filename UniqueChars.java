@@ -20,11 +20,11 @@ public class UniqueChars {
         for (int i = 0; i < s.length(); i++) {
             char curr = s.charAt(i);
 
-            if (curr != ' ' && s.indexOf(curr) == -1) {
+            if (curr != ' ' && str.indexOf(curr) == -1) {
                 str = str + curr;
-            }
         }
-
-        return str;
+        
+    }
+    return str;
     }
 }
