@@ -12,11 +12,11 @@ public class LowerCase {
     */
     public static String lowerCase(String s) {
         if (s.length() < 1){
-            return -1;
+            return "";
         }
 
         String str = "";
-        for (int i = 0; i < s.length; i++) {
+        for (int i = 0; i < s.length(); i++) {
             char curr = s.charAt(i);
             if (curr >= 'A' && curr <= 'Z') {
                 curr = (char) (curr + 32);
