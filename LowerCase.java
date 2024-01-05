@@ -19,10 +19,9 @@ public class LowerCase {
         for (int i = 0; i < s.length; i++) {
             char curr = s.charAt(i);
             if (curr >= 'A' && curr <= 'Z') {
-                curr = curr + 32;
+                curr = (char) (curr + 32);
         }
         str = str + curr;
-        i++;
     }
     return str;
 }
