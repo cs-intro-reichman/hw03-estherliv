@@ -18,7 +18,7 @@ public class UniqueChars {
         String str = "";
 
         for (int i = 0; i < s.length(); i++) {
-            char curr = s.charAt(i);
+            char curr = Character.toLowerCase(s.charAt(i));
 
             if (curr != ' ' && str.indexOf(curr) == -1) {
                 str = str + curr;
