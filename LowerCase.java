@@ -23,8 +23,6 @@ public class LowerCase {
         }
         str = str + curr;
         i++;
-
-        return null;
     }
     return str;
 }
