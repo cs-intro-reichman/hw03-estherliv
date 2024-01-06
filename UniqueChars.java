@@ -27,3 +27,4 @@ public class UniqueChars {
 
     return str;
 }
+}
