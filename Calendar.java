@@ -33,7 +33,7 @@ public class Calendar {
             }
         }
 
-        while (year == 2021) {
+        while (year <= 2021) {
             System.out.print(dayOfMonth + "/" + month + "/" + year);
             if (dayOfWeek == 1) {
                 System.out.println(" Sunday");
