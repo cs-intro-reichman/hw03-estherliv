@@ -11,20 +11,19 @@ public class UniqueChars {
      * unless they are space characters.
      */
     public static String uniqueChars(String s) {
-        if(s.length()<1){
-            return "";
-        }
-
-        String str = "";
-
-        for (int i = 0; i < s.length(); i++) {
-            char curr = Character.toLowerCase(s.charAt(i));
-
-            if (curr != ' ' && str.indexOf(curr) == -1) {
-                str = str + curr;
-        }
-        
+    if (s.length() < 1) {
+        return "";
     }
+
+    String str = "";
+
+    for (int i = 0; i < s.length(); i++) {
+        char curr = Character.toLowerCase(s.charAt(i));
+
+        if (curr != ' ' || str.indexOf(curr) == -1) {
+            str += curr;
+        }
+    }
+
     return str;
-    }
 }
