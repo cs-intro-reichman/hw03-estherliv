@@ -42,10 +42,10 @@ public class LoanCalc {
 		double g = loan / n; 
         iterationCounter = 0;
 
-        while (endBalance(loan, rate, n, g) > 0) {
-            g += epsilon;
-            iterationCounter++;
-        }
+        while (endBalance(loan, rate, n, g) > epsilon) {
+			g += epsilon;
+			iterationCounter++;
+		}
 
         return g;
     }
@@ -63,19 +63,19 @@ public class LoanCalc {
         iterationCounter = 0; 
 
         while ((H - L) > epsilon) {
-            double g = (L + H) / 2;
-
-            if (endBalance(loan, rate, n, g) * endBalance(loan, rate, n, L) > 0) {
-                L = g;
-            } else {
-                H = g;
-            }
-
-            iterationCounter++;
-        }
-
-        return (L + H) / 2;
-    }
+			double g = (L + H) / 2;
+		
+			if (endBalance(loan, rate, n, g) * endBalance(loan, rate, n, L) > epsilon) {
+				L = g;
+			} else {
+				H = g;
+			}
+		
+			iterationCounter++;
+		
+    	}
+		return (L + H) / 2;
+	}
 	
 	/**
 	* Computes the ending balance of a loan, given the sum of the loan, the periodical
