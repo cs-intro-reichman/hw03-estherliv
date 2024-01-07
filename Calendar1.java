@@ -23,7 +23,7 @@ public class Calendar1 {
 
         int sundayCount = 0;
 
-        while (year != 2000) {
+        while (year < 2000) {
 
             if(dayOfWeek == 1)
                 System.out.println(dayOfMonth + "/" + month + "/" + year + " Sunday");
