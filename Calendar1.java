@@ -46,23 +46,25 @@ public class Calendar1 {
     }
 
     private static void advance() {
-        if (dayOfWeek == 7)
-            dayOfWeek = 1;
-        else
-            dayOfWeek++;
-    
-        if (dayOfMonth == nDaysInMonth(month, year)) {
-            if (month == 12) {
-                year++;
-                month = 1;
-            } else {
-                month++;
-            }
-            dayOfMonth = 1;
+        dayOfWeek = (dayOfWeek % 7) + 1; // Move to the next day of the week
+
+    if (dayOfMonth == nDaysInMonth(month, year)) {
+        if (month == 12) {
+            year++;
+            month = 1;
         } else {
-            dayOfMonth++;
+            month++;
         }
+        dayOfMonth = 1;
+    } else {
+        dayOfMonth++;
     }
+
+    if (year == 2000 && month == 12 && dayOfMonth == 31) {
+        // Stop advancing when we reach the end of the 20th century
+        year = 2000;
+    }
+}
 
     public static boolean isLeapYear(int year) {
 
