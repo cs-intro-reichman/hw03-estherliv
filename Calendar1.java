@@ -46,29 +46,22 @@ public class Calendar1 {
     }
 
     private static void advance() {
-
-        if(dayOfWeek == 7)
+        if (dayOfWeek == 7)
             dayOfWeek = 1;
-
         else
             dayOfWeek++;
-
-
-        if(dayOfMonth == nDaysInMonth(month, year) && month != 12){
-            month ++;
+    
+        if (dayOfMonth == nDaysInMonth(month, year)) {
+            if (month == 12) {
+                year++;
+                month = 1;
+            } else {
+                month++;
+            }
             dayOfMonth = 1;
-
-        }
-
-        else if(dayOfMonth == nDaysInMonth(month, year) && month == 12) {
-            year++;
-            dayOfMonth = 1;
-            month = 1;
-        }
-
-        else
+        } else {
             dayOfMonth++;
-
+        }
     }
 
     public static boolean isLeapYear(int year) {
