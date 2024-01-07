@@ -39,16 +39,26 @@ public class LoanCalc {
 	*/
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
-		double g = loan / n; 
-        iterationCounter = 0;
+		iterationCounter = 0;
+        double currentLoan = loan; 
+        double periodPay = loan / n;
 
-        while (Math.abs(endBalance(loan, rate, n, g)) > epsilon) {
-			g += epsilon;
-			iterationCounter++;
+        while(currentLoan >= epsilon){
+			currentLoan = endBalance(loan,rate,n,periodPay);
+			if(currentLoan <= epsilon)
+			break;
+
+		 else {
+			 periodPay = periodPay + epsilon;
+			 currentLoan = loan;
 		}
 
-        return g;
-    }
+		 iterationCounter++;
+	 }
+
+	 return periodPay;
+ }
+
     
     /**
 	* Uses bisection search to compute an approximation of the periodical payment 
@@ -58,36 +68,39 @@ public class LoanCalc {
 	*/
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {
-        double L = 0; 
-        double H = loan; 
-        iterationCounter = 0; 
+        iterationCounter = 0;
+        double L = 0;
+        double H = loan;
+        double periodPay = (L + H) / 2;
 
-        while ((H - L) > epsilon) {
-			double g = (L + H) / 2;
-		
-			if (endBalance(loan, rate, n, g) * endBalance(loan, rate, n, L) > epsilon) {
-				L = g;
-			} else {
-				H = g;
-			}
-		
-			iterationCounter++;
-		
-    	}
-		return (L + H) / 2;
-	}
+        while ( (H - L) > epsilon) {
+
+			if(endBalance(loan, rate, n, periodPay) * endBalance(loan, rate, n, L) > 0)
+                L = periodPay;
+
+            else
+                H = periodPay;
+
+            periodPay = (L + H) / 2;
+
+            iterationCounter++;
+        }
+
+
+        return periodPay;
+    }
 	
 	/**
 	* Computes the ending balance of a loan, given the sum of the loan, the periodical
 	* interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	*/
 	private static double endBalance(double loan, double rate, int n, double payment) {
-        double balance = loan;
+        double currentLoan = loan; 
 
-        for (int i = 0; i < n; i++) {
-            balance = (balance - payment) * (1 + rate);
+        for(int i = 1; i <= n; i++) {
+            currentLoan = (currentLoan - payment) * (1 + rate / 100);
         }
 
-        return balance;
+        return currentLoan;
     }
 }

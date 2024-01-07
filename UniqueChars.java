@@ -10,21 +10,27 @@ public class UniqueChars {
      * except that all the duplicate characters are removed,
      * unless they are space characters.
      */
-    public static String uniqueChars(String s) {
-    if (s.length() < 1) {
-        return "";
-    }
+    public static String uniqueChars(String str) {
+        String unique = "";
+        boolean duplicate;
+        char temp;
+        int index;
 
-    String str = "";
+        for(int i = 0; i < str.length(); i++){
+            duplicate = false;
 
-    for (int i = 0; i < s.length(); i++) {
-        char curr = Character.toLowerCase(s.charAt(i));
+            if(str.charAt(i) != ' ') {
+                index = str.indexOf(str.charAt(i));
+                temp = str.charAt(index);
 
-        if (curr != ' ' && str.indexOf(curr) == -1) {
-            str += curr;
+                if ( (str.charAt(i) == temp) && (i != index) )
+                   duplicate = true;
+            }
+
+            if(!duplicate)
+                 unique += str.charAt(i);
         }
-    }
 
-    return str;
-}
+        return unique;
+    }
 }
