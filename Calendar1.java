@@ -23,7 +23,7 @@ public class Calendar1 {
 
         int sundayCount = 0;
 
-        while (year < 2000) {
+        while (year != 2000) {
 
             if(dayOfWeek == 1)
                 System.out.println(dayOfMonth + "/" + month + "/" + year + " Sunday");
@@ -46,25 +46,30 @@ public class Calendar1 {
     }
 
     private static void advance() {
-        dayOfWeek = (dayOfWeek % 7) + 1; // Move to the next day of the week
 
-    if (dayOfMonth == nDaysInMonth(month, year)) {
-        if (month == 12) {
-            year++;
-            month = 1;
-        } else {
-            month++;
+        if(dayOfWeek == 7)
+            dayOfWeek = 1;
+
+        else
+            dayOfWeek++;
+
+
+        if(dayOfMonth == nDaysInMonth(month, year) && month != 12){
+            month ++;
+            dayOfMonth = 1;
+
         }
-        dayOfMonth = 1;
-    } else {
-        dayOfMonth++;
-    }
 
-    if (year == 2000 && month == 12 && dayOfMonth == 31) {
-        // Stop advancing when we reach the end of the 20th century
-        year = 2000;
+        else if(dayOfMonth == nDaysInMonth(month, year) && month == 12) {
+            year++;
+            dayOfMonth = 1;
+            month = 1;
+        }
+
+        else
+            dayOfMonth++;
+
     }
-}
 
     public static boolean isLeapYear(int year) {
 
@@ -80,10 +85,11 @@ public class Calendar1 {
     public static int nDaysInMonth(int month, int year) {
         int days;
 
-        if( month == 4 || month == 6 || month == 9 || month == 11){
+        if( month == 4 || month == 6 || month == 9 || month == 11)
             days = 30;
 
-        } else if (month == 2) {
+            // February
+        else if (month == 2) {
 
             if(isLeapYear(year))
                 days = 29;
