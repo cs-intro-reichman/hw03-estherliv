@@ -60,7 +60,7 @@ public class Calendar1 {
 
         }
 
-        else if(dayOfMonth == nDaysInMonth(month, year) && month == 12) {
+        if(dayOfMonth == nDaysInMonth(month, year) && month == 12) {
             year++;
             dayOfMonth = 1;
             month = 1;
