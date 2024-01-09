@@ -20,86 +20,67 @@ public class Calendar {
     public static void main(String args[]) {
         
         int debugDaysCounter = 0;
-
         int sundayCount = 0;
+        int inputYear = Integer.parseInt(args[0]);
 
-        while (year <= 1999) {
-
-            if(dayOfWeek == 1)
-                System.out.println(dayOfMonth + "/" + month + "/" + year + " Sunday");
-
-            else
-                System.out.println(dayOfMonth + "/" + month + "/" + year);
-
-
-            if(dayOfMonth == 1 && dayOfWeek == 1) {
-            sundayCount++;
+        while (year < inputYear) {
+            if (dayOfMonth == 1 && dayOfWeek == 1) {
+                sundayCount++;
             }
-
             advance();
-
             debugDaysCounter++;
-
         }
 
-        System.out.println("During the 20th Century, "+sundayCount +" Sundays fell on the first day of the month");
+        while (year == inputYear) {
+            if (dayOfWeek == 1)
+                System.out.println(dayOfMonth + "/" + month + "/" + year + " Sunday");
+            else
+                System.out.println(dayOfMonth + "/" + month + "/" + year);
+            if (dayOfMonth == 1 && dayOfWeek == 1) {
+                sundayCount++;
+            }
+            advance();
+            debugDaysCounter++;
+        }
     }
 
     private static void advance() {
-
-        if(dayOfWeek == 7)
+        if (dayOfWeek == 7)
             dayOfWeek = 1;
-
         else
             dayOfWeek++;
-
-
-        if(dayOfMonth == nDaysInMonth(month, year) && month != 12){
-            month ++;
+        if (dayOfMonth == nDaysInMonth(month, year) && month != 12) {
+            month++;
             dayOfMonth = 1;
-
         }
 
-        if(dayOfMonth == nDaysInMonth(month, year) && month == 12) {
+        if (dayOfMonth == nDaysInMonth(month, year) && month == 12) {
             year++;
             dayOfMonth = 1;
             month = 1;
-        }
-
-        else
+        } else
             dayOfMonth++;
-
     }
 
     public static boolean isLeapYear(int year) {
-
         boolean isLeapYear;
-
         isLeapYear = ((year % 4) == 0) && ((year % 100) != 0);
-
         isLeapYear = isLeapYear || ((year % 400) == 0);
-
         return isLeapYear;
     }
 
     public static int nDaysInMonth(int month, int year) {
         int days;
-
-        if( month == 4 || month == 6 || month == 9 || month == 11)
+        if (month == 4 || month == 6 || month == 9 || month == 11)
             days = 30;
-
-            // February
+        // February
         else if (month == 2) {
-
-            if(isLeapYear(year))
+            if (isLeapYear(year))
                 days = 29;
             else
                 days = 28;
-        }
-
-        else
+        } else
             days = 31;
-
         return days;
     }
 }
